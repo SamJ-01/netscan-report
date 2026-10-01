@@ -54,6 +54,8 @@ TODO: one sentence on why the lab is isolated.
 
 <!-- ![VirtualBox showing the Kali and target VMs](images/lab-setup.png) -->
 
+<!-- ![The LabNet NAT Network settings](images/network-settings.png) -->
+
 ## 3. Preparing the target
 
 To have something realistic to find, I installed services on the target that
@@ -126,6 +128,8 @@ netscan-report TODO-TARGET-IP
 <!-- ![Console output of the second scan](images/scan-after.png) -->
 
 Full report: [HTML](lab-reports/after.html) · [JSON](lab-reports/after.json)
+
+<!-- ![HTML report from the second scan](images/report-after.png) -->
 
 TODO: what changed between the two scans? Did anything surprise you?
 
