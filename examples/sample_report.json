@@ -1,0 +1,236 @@
+{
+  "target": "192.168.56.0/24",
+  "started_at": "2026-01-01T12:00:00",
+  "nmap_command": "nmap -sV -T4 --open -oX - 192.168.56.0/24",
+  "nmap_version": "7.94",
+  "hosts": [
+    {
+      "address": "192.168.56.101",
+      "hostname": "metasploitable.lab",
+      "state": "up",
+      "ports": [
+        {
+          "number": 21,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ftp",
+          "product": "vsftpd",
+          "version": "2.3.4",
+          "extra_info": ""
+        },
+        {
+          "number": 22,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ssh",
+          "product": "OpenSSH",
+          "version": "4.7p1 Debian 8ubuntu1",
+          "extra_info": "protocol 2.0"
+        },
+        {
+          "number": 23,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "telnet",
+          "product": "Linux telnetd",
+          "version": "",
+          "extra_info": ""
+        },
+        {
+          "number": 80,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "http",
+          "product": "Apache httpd",
+          "version": "2.2.8",
+          "extra_info": "(Ubuntu) DAV/2"
+        },
+        {
+          "number": 139,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "netbios-ssn",
+          "product": "Samba smbd",
+          "version": "3.X - 4.X",
+          "extra_info": "workgroup: WORKGROUP"
+        },
+        {
+          "number": 445,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "microsoft-ds",
+          "product": "Samba smbd",
+          "version": "3.0.20-Debian",
+          "extra_info": "workgroup: WORKGROUP"
+        },
+        {
+          "number": 3306,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "mysql",
+          "product": "MySQL",
+          "version": "5.0.51a-3ubuntu5",
+          "extra_info": ""
+        }
+      ]
+    },
+    {
+      "address": "192.168.56.20",
+      "hostname": "win-desktop.lab",
+      "state": "up",
+      "ports": [
+        {
+          "number": 135,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "msrpc",
+          "product": "Microsoft Windows RPC",
+          "version": "",
+          "extra_info": ""
+        },
+        {
+          "number": 445,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "microsoft-ds",
+          "product": "",
+          "version": "",
+          "extra_info": ""
+        },
+        {
+          "number": 3389,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ms-wbt-server",
+          "product": "Microsoft Terminal Services",
+          "version": "",
+          "extra_info": ""
+        }
+      ]
+    },
+    {
+      "address": "192.168.56.5",
+      "hostname": "",
+      "state": "up",
+      "ports": [
+        {
+          "number": 22,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ssh",
+          "product": "OpenSSH",
+          "version": "9.9p1",
+          "extra_info": "protocol 2.0"
+        },
+        {
+          "number": 443,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ssl/http",
+          "product": "nginx",
+          "version": "1.26.2",
+          "extra_info": ""
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "host": "192.168.56.20",
+      "port": 445,
+      "severity": "High",
+      "title": "SMB exposed",
+      "description": "SMB file sharing has a long history of serious remote exploits (e.g. EternalBlue / WannaCry) and is a common ransomware entry point.",
+      "recommendation": "Block port 445 at the firewall except for trusted internal hosts; disable SMBv1 and keep the system patched."
+    },
+    {
+      "host": "192.168.56.20",
+      "port": 3389,
+      "severity": "High",
+      "title": "RDP exposed",
+      "description": "Remote Desktop is heavily targeted by password-guessing attacks and has had critical vulnerabilities (e.g. BlueKeep).",
+      "recommendation": "Do not expose RDP directly. Put it behind a VPN or gateway, enforce Network Level Authentication, strong passwords and MFA."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 21,
+      "severity": "High",
+      "title": "Backdoored vsftpd version",
+      "description": "Detected vsftpd 2.3.4. vsftpd 2.3.4 was distributed with a known backdoor (CVE-2011-2523) that gives an attacker a root shell.",
+      "recommendation": "Upgrade vsftpd immediately and investigate the host for compromise."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 22,
+      "severity": "High",
+      "title": "Very old OpenSSH",
+      "description": "Detected OpenSSH 4.7p1 Debian 8ubuntu1. OpenSSH versions before 7.0 are many years old and affected by multiple known vulnerabilities.",
+      "recommendation": "Check the vendor's security advisories (distributions may backport fixes without changing the version number) and upgrade if affected."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 23,
+      "severity": "High",
+      "title": "Telnet exposed",
+      "description": "Telnet sends usernames, passwords and all data in plain text, so anyone on the network path can read them.",
+      "recommendation": "Disable Telnet and use SSH instead."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 80,
+      "severity": "High",
+      "title": "End-of-life Apache httpd",
+      "description": "Detected Apache httpd 2.2.8. Apache httpd versions before 2.4 are end-of-life and no longer receive security fixes.",
+      "recommendation": "Upgrade to a supported Apache 2.4 release."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 445,
+      "severity": "High",
+      "title": "SMB exposed",
+      "description": "SMB file sharing has a long history of serious remote exploits (e.g. EternalBlue / WannaCry) and is a common ransomware entry point.",
+      "recommendation": "Block port 445 at the firewall except for trusted internal hosts; disable SMBv1 and keep the system patched."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 21,
+      "severity": "Medium",
+      "title": "FTP exposed",
+      "description": "FTP sends credentials and files in plain text and may allow anonymous login.",
+      "recommendation": "Replace with SFTP or FTPS, and disable anonymous access."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 139,
+      "severity": "Medium",
+      "title": "NetBIOS session service exposed",
+      "description": "NetBIOS can leak information about the host, users and shares, and is an older way of reaching SMB.",
+      "recommendation": "Disable NetBIOS over TCP/IP if it is not needed, or firewall it."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 3306,
+      "severity": "Medium",
+      "title": "Database port exposed",
+      "description": "Database servers should rarely be reachable directly from other networks; exposure invites password guessing and exploits.",
+      "recommendation": "Firewall the database so only the application servers that need it can connect."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 3306,
+      "severity": "Medium",
+      "title": "Outdated MySQL",
+      "description": "Detected MySQL 5.0.51a-3ubuntu5. MySQL versions before 8.0 are end-of-life.",
+      "recommendation": "Upgrade to a supported MySQL release."
+    },
+    {
+      "host": "192.168.56.101",
+      "port": 80,
+      "severity": "Low",
+      "title": "Unencrypted HTTP",
+      "description": "The web service is served over plain HTTP, so traffic (including any logins) can be read or modified in transit.",
+      "recommendation": "Serve the site over HTTPS and redirect HTTP to HTTPS."
+    }
+  ],
+  "elapsed_seconds": null
+}
