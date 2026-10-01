@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netscan-report"
+version = "0.1.0"
+description = "Run an nmap scan, flag common risky findings and write Markdown/HTML/JSON reports."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = []  # standard library only; nmap itself must be installed separately
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+netscan-report = "netscan_report.cli:main"
+
+[tool.setuptools]
+packages = ["netscan_report"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

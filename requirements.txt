@@ -1,0 +1,5 @@
+# netscan-report itself only uses the Python standard library.
+# The one external requirement is the nmap program: https://nmap.org/download.html
+#
+# Needed to run the unit tests:
+pytest>=7
