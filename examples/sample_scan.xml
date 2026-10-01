@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sample nmap XML output from a private home lab (VirtualBox host-only network).
+     Used by the unit tests, and for trying the tool without scanning anything
+     (see the README for the command). -->
+<nmaprun scanner="nmap" args="nmap -sV -T4 --open -oX - 192.168.56.0/24" start="1767268800" version="7.94" xmloutputversion="1.05">
+  <host>
+    <status state="up" reason="arp-response"/>
+    <address addr="192.168.56.101" addrtype="ipv4"/>
+    <address addr="08:00:27:AA:BB:01" addrtype="mac" vendor="Oracle VirtualBox virtual NIC"/>
+    <hostnames><hostname name="metasploitable.lab" type="PTR"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="21"><state state="open"/><service name="ftp" product="vsftpd" version="2.3.4" method="probed"/></port>
+      <port protocol="tcp" portid="22"><state state="open"/><service name="ssh" product="OpenSSH" version="4.7p1 Debian 8ubuntu1" extrainfo="protocol 2.0" method="probed"/></port>
+      <port protocol="tcp" portid="23"><state state="open"/><service name="telnet" product="Linux telnetd" method="probed"/></port>
+      <port protocol="tcp" portid="80"><state state="open"/><service name="http" product="Apache httpd" version="2.2.8" extrainfo="(Ubuntu) DAV/2" method="probed"/></port>
+      <port protocol="tcp" portid="139"><state state="open"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: WORKGROUP" method="probed"/></port>
+      <port protocol="tcp" portid="445"><state state="open"/><service name="microsoft-ds" product="Samba smbd" version="3.0.20-Debian" extrainfo="workgroup: WORKGROUP" method="probed"/></port>
+      <port protocol="tcp" portid="3306"><state state="open"/><service name="mysql" product="MySQL" version="5.0.51a-3ubuntu5" method="probed"/></port>
+    </ports>
+  </host>
+  <host>
+    <status state="up" reason="arp-response"/>
+    <address addr="192.168.56.20" addrtype="ipv4"/>
+    <hostnames><hostname name="win-desktop.lab" type="PTR"/></hostnames>
+    <ports>
+      <port protocol="tcp" portid="135"><state state="open"/><service name="msrpc" product="Microsoft Windows RPC" method="probed"/></port>
+      <port protocol="tcp" portid="445"><state state="open"/><service name="microsoft-ds" method="table"/></port>
+      <port protocol="tcp" portid="3389"><state state="open"/><service name="ms-wbt-server" product="Microsoft Terminal Services" method="probed"/></port>
+    </ports>
+  </host>
+  <host>
+    <status state="up" reason="syn-ack"/>
+    <address addr="192.168.56.5" addrtype="ipv4"/>
+    <hostnames/>
+    <ports>
+      <port protocol="tcp" portid="22"><state state="open"/><service name="ssh" product="OpenSSH" version="9.9p1" extrainfo="protocol 2.0" method="probed"/></port>
+      <port protocol="tcp" portid="443"><state state="open"/><service name="http" product="nginx" version="1.26.2" tunnel="ssl" method="probed"/></port>
+      <port protocol="tcp" portid="8443"><state state="filtered"/><service name="https-alt" method="table"/></port>
+    </ports>
+  </host>
+  <host>
+    <status state="down" reason="no-response"/>
+    <address addr="192.168.56.200" addrtype="ipv4"/>
+  </host>
+  <runstats><finished time="1767268895" elapsed="95.12"/><hosts up="3" down="253" total="256"/></runstats>
+</nmaprun>
