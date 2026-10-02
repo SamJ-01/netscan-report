@@ -142,6 +142,11 @@ sudo systemctl disable --now vsftpd smbd nmbd
 `disable --now` stops each service immediately **and** stops it starting
 again at boot, so the fix survives a reboot.
 
+`ss -tlnp` on the target afterwards confirmed only SSH (22) and Apache (80)
+were still listening:
+
+![Listening services on the target after hardening](images/target-services-after.jpg)
+
 I deliberately kept two services:
 
 - **SSH (22):** needed to administer the server remotely. A current OpenSSH
