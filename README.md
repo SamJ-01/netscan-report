@@ -4,9 +4,12 @@
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-A beginner-friendly Python command-line tool that runs an **nmap** scan, flags
-common risky findings with a simple **High / Medium / Low** severity, and writes
-the results as **Markdown**, **HTML** and **JSON** reports.
+![netscan-report: scan a network with nmap, flag risky services and generate clear reports](docs/social-preview.png)
+
+A Python command-line tool that runs an **nmap** scan, risk-rates exposed
+services as **High / Medium / Low** with remediation advice, and writes the
+results as **Markdown**, **HTML** and **JSON** reports, so findings can be handed
+straight to whoever has to fix them.
 
 > [!WARNING]
 > ## ⚖️ Legal and ethical use: read this first
@@ -47,9 +50,9 @@ the results as **Markdown**, **HTML** and **JSON** reports.
 ## Why I built this
 
 nmap is the standard tool for network discovery, but its raw output is hard to
-hand to someone else. In real IT and security work you usually need to
-**explain** what you found: what is exposed, why it matters and what to do
-about it. This project practises that whole workflow:
+hand to someone else. In security operations the job isn't finished at
+detection: you have to **explain** what is exposed, why it matters and what to
+do about it, then verify the fix. This project covers that whole workflow:
 
 - running a scanning tool safely from Python (input validation, no shell injection),
 - parsing structured data (nmap's XML output),
