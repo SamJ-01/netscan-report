@@ -78,6 +78,22 @@ def test_identified_service_on_risky_port_is_not_misflagged():
     assert titles_for(Port(80, service="ssh")) == []
 
 
+def test_samba_on_445_labelled_netbios_is_rated_as_smb():
+    # Regression test: a real Samba server showed nmap labelling port 445 as
+    # "netbios-ssn", which used to be under-rated as Medium instead of High.
+    port = Port(445, service="netbios-ssn", product="Samba smbd", version="4")
+    findings = assess_host(Host("10.0.2.20", ports=[port]))
+    assert [(f.title, f.severity) for f in findings] == [("SMB exposed", HIGH)]
+
+
+def test_netbios_on_139_is_still_medium():
+    port = Port(139, service="netbios-ssn", product="Samba smbd", version="4")
+    findings = assess_host(Host("10.0.2.20", ports=[port]))
+    assert [(f.title, f.severity) for f in findings] == [
+        ("NetBIOS session service exposed", MEDIUM)
+    ]
+
+
 def test_https_is_not_flagged_as_unencrypted():
     assert titles_for(Port(443, service="ssl/http", product="nginx", version="1.26.2")) == []
 

@@ -30,6 +30,15 @@ SEVERITY_ORDER = {HIGH: 0, MEDIUM: 1, LOW: 2}
 # we fall back to guessing the service from the port number.
 UNIDENTIFIED_SERVICES = {"", "unknown", "tcpwrapped"}
 
+# Cases where nmap's service name is misleading for a particular port.
+# Samba answers on both 139 and 445, and nmap's version detection often labels
+# BOTH as "netbios-ssn". Port 445 is direct SMB, though, so we treat it as
+# "microsoft-ds" (SMB) to give it the correct, higher severity.
+# (Found by scanning a real Samba server in the home lab.)
+SERVICE_NAME_OVERRIDES = {
+    (445, "netbios-ssn"): "microsoft-ds",
+}
+
 
 @dataclass(frozen=True)
 class ServiceRule:
@@ -246,6 +255,7 @@ def matching_service_rule(port: Port) -> Optional[ServiceRule]:
     If the service is unidentified, we fall back to the port number.
     """
     service = port.service.lower()
+    service = SERVICE_NAME_OVERRIDES.get((port.number, service), service)
     for rule in SERVICE_RULES:
         if service in UNIDENTIFIED_SERVICES:
             if port.number in rule.ports:
