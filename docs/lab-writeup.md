@@ -60,6 +60,11 @@ VBoxManage natnetwork add --netname LabNet --network "10.0.2.0/24" --enable --dh
 
 ![The LabNet NAT Network](images/network-settings.jpg)
 
+![VirtualBox showing the Kali and target VMs on LabNet](images/lab-setup.jpg)
+
+*The scanner VM's name shows "(base-for-target)": that is the snapshot the
+target was cloned from.*
+
 ![Kali's network adapter attached to LabNet](images/lab-network-adapter.jpg)
 
 ## 3. Preparing the target
