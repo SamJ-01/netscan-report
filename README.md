@@ -4,6 +4,8 @@
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
+![netscan-report: scan a network with nmap, flag risky services and generate clear reports](docs/social-preview.png)
+
 A beginner-friendly Python command-line tool that runs an **nmap** scan, flags
 common risky findings with a simple **High / Medium / Low** severity, and writes
 the results as **Markdown**, **HTML** and **JSON** reports.
