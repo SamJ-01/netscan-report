@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scan report: 10.0.2.20</title>
+<style>
+  :root { --bg:#f7f8fa; --card:#fff; --text:#1d2433; --muted:#5b6475; --border:#dde1e8;
+          --high:#c62828; --medium:#b26a00; --low:#1565c0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14171c; --card:#1d2128; --text:#e6e9ef; --muted:#9aa3b2; --border:#2f3540;
+            --high:#ef5350; --medium:#ffb74d; --low:#64b5f6; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px 16px; background:var(--bg); color:var(--text);
+         font:15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:1000px; margin:0 auto; }
+  h1 { font-size:1.6rem; margin:0 0 4px; }
+  h2 { margin-top:32px; border-bottom:1px solid var(--border); padding-bottom:4px; }
+  .muted { color:var(--muted); }
+  .note { background:var(--card); border-left:4px solid var(--medium); padding:10px 14px;
+          border-radius:4px; margin:16px 0; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:12px; }
+  .card .n { font-size:1.8rem; font-weight:700; }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:var(--card); margin:8px 0 16px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border);
+           vertical-align:top; }
+  th { font-size:.85rem; text-transform:uppercase; letter-spacing:.03em; color:var(--muted); }
+  .sev { font-weight:700; white-space:nowrap; }
+  .sev-High { color:var(--high); } .sev-Medium { color:var(--medium); } .sev-Low { color:var(--low); }
+  code { font-family:ui-monospace, Menlo, Consolas, monospace; font-size:.9em; }
+</style></head><body><main>
+<h1>Network Scan Report: <code>10.0.2.20</code></h1>
+<div class="muted">Scan started 2026-10-02T02:50:04 &middot; nmap 7.99</div>
+<div class="note">This report was produced by an automated scan. Findings are indicators for a human to verify, not confirmed vulnerabilities. Only scan systems you own or have explicit written permission to test.</div>
+<div class="cards">
+<div class="card"><div class="n">1</div>Live hosts</div>
+<div class="card"><div class="n">2</div>Open ports</div>
+<div class="card"><div class="n sev-High">0</div>High</div>
+<div class="card"><div class="n sev-Medium">0</div>Medium</div>
+<div class="card"><div class="n sev-Low">1</div>Low</div>
+</div>
+<h2>Findings</h2>
+<div class="table-wrap"><table><thead><tr><th>Severity</th><th>Host</th><th>Port</th><th>Finding</th><th>Recommendation</th></tr></thead><tbody>
+<tr><td class="sev sev-Low">Low</td><td>10.0.2.20</td><td>80</td><td><strong>Unencrypted HTTP</strong><br>The web service is served over plain HTTP, so traffic (including any logins) can be read or modified in transit.</td><td>Serve the site over HTTPS and redirect HTTP to HTTPS.</td></tr>
+</tbody></table></div>
+<h2>Hosts</h2>
+<h3>10.0.2.20</h3>
+<div class="table-wrap"><table><thead><tr><th>Port</th><th>Service</th><th>Product</th><th>Version</th><th>Extra info</th></tr></thead><tbody>
+<tr><td>22/tcp</td><td>ssh</td><td>OpenSSH</td><td>10.5p1 Debian 1</td><td>protocol 2.0</td></tr>
+<tr><td>80/tcp</td><td>http</td><td>Apache httpd</td><td>2.4.68</td><td>(Debian)</td></tr>
+</tbody></table></div>
+<h2>Scan details</h2><p class="muted">nmap command: <code>/usr/lib/nmap/nmap --privileged -sV -T4 --open -oX - 10.0.2.20</code></p>
+</main></body></html>

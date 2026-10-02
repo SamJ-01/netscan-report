@@ -1,0 +1,44 @@
+{
+  "target": "10.0.2.20",
+  "started_at": "2026-10-02T02:50:04",
+  "nmap_command": "/usr/lib/nmap/nmap --privileged -sV -T4 --open -oX - 10.0.2.20",
+  "nmap_version": "7.99",
+  "hosts": [
+    {
+      "address": "10.0.2.20",
+      "hostname": "",
+      "state": "up",
+      "ports": [
+        {
+          "number": 22,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ssh",
+          "product": "OpenSSH",
+          "version": "10.5p1 Debian 1",
+          "extra_info": "protocol 2.0"
+        },
+        {
+          "number": 80,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "http",
+          "product": "Apache httpd",
+          "version": "2.4.68",
+          "extra_info": "(Debian)"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "host": "10.0.2.20",
+      "port": 80,
+      "severity": "Low",
+      "title": "Unencrypted HTTP",
+      "description": "The web service is served over plain HTTP, so traffic (including any logins) can be read or modified in transit.",
+      "recommendation": "Serve the site over HTTPS and redirect HTTP to HTTPS."
+    }
+  ],
+  "elapsed_seconds": 6.9
+}

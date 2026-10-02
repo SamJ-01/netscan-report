@@ -1,0 +1,112 @@
+{
+  "target": "10.0.2.20",
+  "started_at": "2026-10-02T02:30:46",
+  "nmap_command": "/usr/lib/nmap/nmap --privileged -sV -T4 --open -oX - 10.0.2.20",
+  "nmap_version": "7.99",
+  "hosts": [
+    {
+      "address": "10.0.2.20",
+      "hostname": "",
+      "state": "up",
+      "ports": [
+        {
+          "number": 21,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ftp",
+          "product": "vsftpd",
+          "version": "3.0.5",
+          "extra_info": ""
+        },
+        {
+          "number": 22,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "ssh",
+          "product": "OpenSSH",
+          "version": "10.5p1 Debian 1",
+          "extra_info": "protocol 2.0"
+        },
+        {
+          "number": 23,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "telnet",
+          "product": "",
+          "version": "",
+          "extra_info": ""
+        },
+        {
+          "number": 80,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "http",
+          "product": "Apache httpd",
+          "version": "2.4.68",
+          "extra_info": "(Debian)"
+        },
+        {
+          "number": 139,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "netbios-ssn",
+          "product": "Samba smbd",
+          "version": "4",
+          "extra_info": ""
+        },
+        {
+          "number": 445,
+          "protocol": "tcp",
+          "state": "open",
+          "service": "netbios-ssn",
+          "product": "Samba smbd",
+          "version": "4",
+          "extra_info": ""
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "host": "10.0.2.20",
+      "port": 23,
+      "severity": "High",
+      "title": "Telnet exposed",
+      "description": "Telnet sends usernames, passwords and all data in plain text, so anyone on the network path can read them.",
+      "recommendation": "Disable Telnet and use SSH instead."
+    },
+    {
+      "host": "10.0.2.20",
+      "port": 21,
+      "severity": "Medium",
+      "title": "FTP exposed",
+      "description": "FTP sends credentials and files in plain text and may allow anonymous login.",
+      "recommendation": "Replace with SFTP or FTPS, and disable anonymous access."
+    },
+    {
+      "host": "10.0.2.20",
+      "port": 139,
+      "severity": "Medium",
+      "title": "NetBIOS session service exposed",
+      "description": "NetBIOS can leak information about the host, users and shares, and is an older way of reaching SMB.",
+      "recommendation": "Disable NetBIOS over TCP/IP if it is not needed, or firewall it."
+    },
+    {
+      "host": "10.0.2.20",
+      "port": 445,
+      "severity": "Medium",
+      "title": "NetBIOS session service exposed",
+      "description": "NetBIOS can leak information about the host, users and shares, and is an older way of reaching SMB.",
+      "recommendation": "Disable NetBIOS over TCP/IP if it is not needed, or firewall it."
+    },
+    {
+      "host": "10.0.2.20",
+      "port": 80,
+      "severity": "Low",
+      "title": "Unencrypted HTTP",
+      "description": "The web service is served over plain HTTP, so traffic (including any logins) can be read or modified in transit.",
+      "recommendation": "Serve the site over HTTPS and redirect HTTP to HTTPS."
+    }
+  ],
+  "elapsed_seconds": 47.0
+}
