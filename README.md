@@ -37,7 +37,7 @@ the results as **Markdown**, **HTML** and **JSON** reports.
 - [What it does](#what-it-does)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Sample output](#sample-output)
+- [Sample output](#sample-output) · [Lab write-up](docs/lab-writeup.md)
 - [How the risk rating works](#how-the-risk-rating-works)
 - [Project structure](#project-structure)
 - [Running the tests](#running-the-tests)
@@ -213,6 +213,12 @@ The full sample reports are in the [`examples/`](examples/) folder:
 [Markdown](examples/sample_report.md) ·
 [HTML](examples/sample_report.html) ·
 [JSON](examples/sample_report.json).
+
+### Lab write-up
+
+See the [lab write-up](docs/lab-writeup.md) for a real before-and-after
+assessment: building an isolated VirtualBox lab, scanning a deliberately
+insecure server, hardening it, and verifying the fix with a second scan.
 
 ## How the risk rating works
 
