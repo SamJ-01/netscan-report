@@ -1,11 +1,5 @@
 # Lab Write-up: Scanning and Hardening a Linux Server
 
-<!--
-  DRAFT: rewrite this in your own words before sharing it, so you can talk
-  about every part of it confidently. Delete this comment when you are happy
-  with the page.
--->
-
 > **Scope and authorisation:** every system scanned in this write-up is a
 > virtual machine I own, running on an isolated VirtualBox network on my own
 > computer. No other networks or systems were scanned.
