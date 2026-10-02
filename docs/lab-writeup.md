@@ -2,9 +2,8 @@
 
 <!--
   DRAFT: rewrite this in your own words before sharing it, so you can talk
-  about every part of it confidently. Check that the image file names in
-  docs/images/ match the ones used below exactly (they are case-sensitive).
-  Delete this comment when you are happy with the page.
+  about every part of it confidently. Delete this comment when you are happy
+  with the page.
 -->
 
 > **Scope and authorisation:** every system scanned in this write-up is a
@@ -59,9 +58,9 @@ The network was created from the command line:
 VBoxManage natnetwork add --netname LabNet --network "10.0.2.0/24" --enable --dhcp on
 ```
 
-![The LabNet NAT Network](images/network-settings.png)
+![The LabNet NAT Network](images/network-settings.jpg)
 
-![VirtualBox showing the Kali and target VMs](images/lab-setup.png)
+![Kali's network adapter attached to LabNet](images/lab-network-adapter.jpg)
 
 ## 3. Preparing the target
 
@@ -84,7 +83,7 @@ sudo systemctl enable --now vsftpd smbd nmbd apache2 inetutils-inetd
 
 `ss -tlnp` on the target confirmed all six services were listening:
 
-![Listening services on the target](images/target-services.png)
+![Listening services on the target](images/target-services.jpg)
 
 ## 4. Scan: before hardening
 
@@ -94,13 +93,13 @@ Command run from the scanner:
 netscan-report 10.0.2.20
 ```
 
-![Console output of the first scan](images/scan-before.png)
+![Console output of the first scan](images/scan-before.jpg)
 
 Full report: [HTML](lab-reports/before.html) · [JSON](lab-reports/before.json)
 
-![HTML report from the first scan](images/report-before.png)
+![HTML report from the first scan](images/report-before.jpg)
 
-![HTML report from the first scan (continued)](images/report-before-2.png)
+![HTML report from the first scan (continued)](images/report-before-2.jpg)
 
 ## 5. Analysis of the top findings
 
@@ -157,13 +156,13 @@ I deliberately kept two services:
 netscan-report 10.0.2.20
 ```
 
-![Console output of the second scan](images/scan-after.png)
+![Console output of the second scan](images/scan-after.jpg)
 
 Full report: [HTML](lab-reports/after.html) · [JSON](lab-reports/after.json)
 
-![HTML report from the second scan](images/report-after.png)
+![HTML report from the second scan](images/report-after.jpg)
 
-![HTML report from the second scan (continued)](images/report-after-2.png)
+![HTML report from the second scan (continued)](images/report-after-2.jpg)
 
 The open ports dropped from six to two, and every High and Medium finding
 disappeared. Re-scanning matters: it proves the fix worked from an
